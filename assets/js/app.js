@@ -1,4 +1,4 @@
-exports.handler = function(event, context, callback) {
+
 window.onload = function(){
 	let showNav = true;
 	const toggleNav = ()=>{
@@ -10,11 +10,19 @@ window.onload = function(){
 	}
 	document.querySelector('.fa-bars').addEventListener('click',toggleNav)
 
+	const getToken = async () =>{
+		let res = await fetch('https://david-github-clone.netlify.app/.netlify/functions/githubclone.',{
+			method:'GET'
+		})
+		let data = await res.json()
+		return data
+	}
 	const getData = async () =>{
+		let GITHUB_TOKEN = await getToken();
 		let res = await fetch('https://api.github.com/graphql',{
 			method:'POST',
 			headers:{
-				Authorization: `bearer ${process.env.GITHUB_TOKEN}`
+				Authorization: `bearer ${GITHUB_TOKEN}`
 			},
 			body:JSON.stringify({
 				query:`{
@@ -121,9 +129,4 @@ window.onload = function(){
 	document.addEventListener('scroll',checkProfileImgScroll)
 
 	getData();
-	callback(null, {
-    statusCode: 200,
-    body: 'No worries, all is working fine!'
-  })
-}
 }
