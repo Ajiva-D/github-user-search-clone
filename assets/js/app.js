@@ -13,7 +13,7 @@ window.onload = function(){
 		let res = await fetch('https://api.github.com/graphql',{
 			method:'POST',
 			headers:{
-				Authorization: `bearer dae15b7f60461530ff42572baa6b79f4ac714287`
+				Authorization: `bearer ${process.env.GITHUB_TOKEN}`
 			},
 			body:JSON.stringify({
 				query:`{
