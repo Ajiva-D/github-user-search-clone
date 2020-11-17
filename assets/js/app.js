@@ -11,7 +11,7 @@ window.onload = function(){
 	document.querySelector('.fa-bars').addEventListener('click',toggleNav)
 
 	const getToken = async () =>{
-		let res = await fetch('https://david-github-clone.netlify.app/.netlify/functions/githubclone.',{
+		let res = await fetch('https://david-github-clone.netlify.app/.netlify/functions/githubclone',{
 			method:'GET'
 		})
 		let data = await res.json()
