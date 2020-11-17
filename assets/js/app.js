@@ -8,7 +8,7 @@ window.onload = function(){
 			nav.style.display = "block";
 		} else 	nav.style.display = "none";
 	}
-	document.querySelector('.fa-bars').addEventListener('click',toggleNav)
+	document.querySelector('.bars').addEventListener('click',toggleNav)
 
 	const getToken = async () =>{
 		let res = await fetch('https://david-github-clone.netlify.app/.netlify/functions/githubclone',{
@@ -64,7 +64,11 @@ window.onload = function(){
 		imgs[i].src =data.avatarUrl;
 	}
 	// add usernames
-	document.querySelector('.user-name').innerText = data.login
+	let user_names = document.querySelectorAll('.user-name')
+	for (let i = 0; i < user_names.length; i++) {
+		user_names[i].innerText = data.login;	
+ }
+
 	let profileNames = document.querySelectorAll('.profile-names');
 	for (let i = 0; i < profileNames.length; i++) {
 		profileNames[i].firstChild.nextSibling.innerText = data.name;
@@ -110,6 +114,8 @@ window.onload = function(){
 		allrepos +=reposView[i]
 	}
 	repoCon.innerHTML = allrepos;
+	document.querySelector('.main').style.display = 'block';
+	document.querySelector('.loader').style.display = 'none'
 	}
 
 	const isInViewport = () => {
