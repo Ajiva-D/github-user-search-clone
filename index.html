@@ -10,44 +10,80 @@
 	<body>
 		<header>
 		<nav>
+		<div class="d-md-none">
+			<i class="fas fa-bars"></i>
+		</div>
 			<div class="d-flex">
 			<img src="./assets/images/githubLogo.png" alt="" class="logo">
-			<div class="search-con d-flex">
+			<div class="search-con d-flex d-none">
 				<input type="text" placeholder="Search or jump to...">
 				<div class="slash-box d-flex"><p>/</p></div>
 			</div>
-				<a href="">Pull requests</a>
+			<div class="d-flex d-none">
+				<a href="" class="pull-request">Pull requests</a>
+				<a href="" class="pull-request-tab">Pulls</a>
 				<a href="">Issues</a>
-				<a href="">Codespaces</a>
 				<a href="">Marketplace</a>
 				<a href="">Explore</a>
+			</div>
 			</div>
 			<ul class="d-flex">
 				<li class="position-relative">
 					<i class="far fa-bell"></i>
 					<div class="notification-dot"></div>
 				</li>
-				<li class="d-flex">
+				<li class="d-flex d-none">
 					<i class="fas fa-plus"></i>
 					<i class="fas fa-caret-down"></i>
 				</li>
-				<li class="d-flex">
-					<img src="./assets/images/IMG_20200603_140734.jpg" alt="" class="nav-img">
+				<li class="d-flex d-none">
+					<img src="./assets/images/IMG_20200603_140734.jpg" alt="" class="nav-img user-img">
 					<i class="fas fa-caret-down"></i>
 				</li>
 			</ul>
 		</nav>
+		<nav class="mobile-nav">
+			<div class="search-con d-flex">
+				<input type="text" placeholder="Search or jump to...">
+				<div class="slash-box d-flex"><p>/</p></div>
+			</div>
+			<div class="nav-list">
+				<p>Dashboard</p>
+			</div>
+			<div class="nav-list">
+				<p>Pull requests</p>
+			</div>
+			<div class="nav-list">
+				<p>Issues</p>
+			</div>
+			<div class="nav-list">
+				<p>Marketplace</p>
+			</div>
+			<div class="nav-list">
+				<p>Explore</p>
+			</div>
+			<div class="nav-list d-flex">
+				<img src="./assets/images/IMG_20200603_140734.jpg" alt="" class="nav-img user-img">
+				<p class="user-name">Ajiva-D</p>
+			</div>
+			<div class="nav-list d-flex">
+				<span class="iconify" data-icon="octicon-sign-out-16" data-inline="false"></span>
+				<p>Sign out</p>
+			</div>
+		</nav>
 	</header>
+
 		<main>
 			<div class="container sticky-nav">
 				<div class="title-nav row">
-					<div class="col-md-3 position-relative">
+					<div class="col-md-3 position-relative d-flex">
+					<div class="d-flex title-name">
+						<img src="./assets/images/IMG_20200603_140734.jpg" alt="" class="title-img user-img">
+						<h5 class="user-name">Ajiva-D</>
+					</div>
 						<div class="profile-card mt mobile-card">
 							<div class="profile-img">
-								<img src="./assets/images/IMG_20200603_140734.jpg" alt="" />
-								<div class="emoji-con d-none">
-									<span class="iconify" data-icon="octicon-smiley-24" data-inline="false"></span>
-								</div>
+								<img src="./assets/images/IMG_20200603_140734.jpg" alt="" class="user-img" />
 							</div>
 							<div class="profile-names">
 								<h1>David Aji</h1>
@@ -56,7 +92,7 @@
 							<p class="bio-text d-none">Lorem ipsum dolor sit amet consectetur adipisicing</p>
 						</div>
 					</div>
-					<!-- for mobile -->
+			
 					<div class="d-md-none col-12">
 						<div class="set-status">
 							<span class="iconify" data-icon="octicon-smiley-24" data-inline="false"></span>
@@ -71,7 +107,7 @@
 								<li class="active-title">
 									<span class="iconify" data-icon="octicon-repo-16" data-inline="false"></span>
 									<p>Repositories</p>
-									<span class="repos-total">38</span>
+									<span class="repos-total">20</span>
 								</li>
 								<li>
 									<span class="iconify" data-icon="octicon-project-24" data-inline="false"></span>
@@ -93,12 +129,13 @@
 						<div class="position-relative d-none">
 							<div class="profile-card mt">
 								<div class="profile-img">
-									<img src="./assets/images/IMG_20200603_140734.jpg" alt="" />
-									<div class="emoji-con d-none">
+									<img src="./assets/images/IMG_20200603_140734.jpg" alt="" class="user-img"/>
+									<div class="emoji-con">
 										<span class="iconify" data-icon="octicon-smiley-24" data-inline="false"></span>
+										<p>Set status</p>
 									</div>
 								</div>
-								<div class="profile-names">
+								<div class="profile-names scrolled">
 									<h1>David Aji</h1>
 									<h5 class="username">Ajiva-D</h5>
 								</div>
@@ -112,125 +149,14 @@
 							<div class="search-repo-con mt">
 								<input type="text" placeholder="Find a repository..." />
 							</div>
-							<div class="repos-list mt">
-								<div class="">
-									<h3>vue-charts</h3>
-									<p>A simple web app</p>
-									<div class="d-flex mt">
-										<div class="d-flex">
-											<div class="language-code"></div>
-											<p>Vue</p>
-										</div>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> 5</p>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-repo-forked-16" data-inline="false"></span> <span>2</span></p>
-										<p class="ml">Updated on 1 Nov</p>
-									</div>
-								</div>
-								<div class="mt">
-									<button class="d-flex"> <span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> <span class="d-flex">Star</span> </button>
-								</div>
-							</div>
-
-							<div class="repos-list mt">
-								<div class="">
-									<h3>vue-charts</h3>
-									<p>A simple web app</p>
-									<div class="d-flex mt">
-										<div class="d-flex">
-											<div class="language-code"></div>
-											<p>Vue</p>
-										</div>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> 5</p>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-repo-forked-16" data-inline="false"></span> <span>2</span></p>
-										<p class="ml">Updated on 1 Nov</p>
-									</div>
-								</div>
-								<div class="mt">
-									<button class="d-flex"> <span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> <span class="d-flex">Star</span> </button>
-								</div>
-							</div>
-
-							<div class="repos-list mt">
-								<div class="">
-									<h3>vue-charts</h3>
-									<p>A simple web app</p>
-									<div class="d-flex mt">
-										<div class="d-flex">
-											<div class="language-code"></div>
-											<p>Vue</p>
-										</div>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> 5</p>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-repo-forked-16" data-inline="false"></span> <span>2</span></p>
-										<p class="ml">Updated on 1 Nov</p>
-									</div>
-								</div>
-								<div class="mt">
-									<button class="d-flex"> <span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> <span class="d-flex">Star</span> </button>
-								</div>
-							</div>
-
-							<div class="repos-list mt">
-								<div class="">
-									<h3>vue-charts</h3>
-									<p>A simple web app</p>
-									<div class="d-flex mt">
-										<div class="d-flex">
-											<div class="language-code"></div>
-											<p>Vue</p>
-										</div>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> 5</p>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-repo-forked-16" data-inline="false"></span> <span>2</span></p>
-										<p class="ml">Updated on 1 Nov</p>
-									</div>
-								</div>
-								<div class="mt">
-									<button class="d-flex"> <span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> <span class="d-flex">Star</span> </button>
-								</div>
-							</div>
-
-							<div class="repos-list mt">
-								<div class="">
-									<h3>vue-charts</h3>
-									<p>A simple web app</p>
-									<div class="d-flex mt">
-										<div class="d-flex">
-											<div class="language-code"></div>
-											<p>Vue</p>
-										</div>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> 5</p>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-repo-forked-16" data-inline="false"></span> <span>2</span></p>
-										<p class="ml">Updated on 1 Nov</p>
-									</div>
-								</div>
-								<div class="mt">
-									<button class="d-flex"> <span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> <span class="d-flex">Star</span> </button>
-								</div>
-							</div>
-
-							<div class="repos-list mt">
-								<div class="">
-									<h3>vue-charts</h3>
-									<p>A simple web app</p>
-									<div class="d-flex mt">
-										<div class="d-flex">
-											<div class="language-code"></div>
-											<p>Vue</p>
-										</div>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> 5</p>
-										<p class="d-flex ml"><span class="iconify" data-icon="octicon-repo-forked-16" data-inline="false"></span> <span>2</span></p>
-										<p class="ml">Updated on 1 Nov</p>
-									</div>
-								</div>
-								<div class="mt">
-									<button class="d-flex"> <span class="iconify" data-icon="octicon-star-16" data-inline="false"></span> <span class="d-flex">Star</span> </button>
-								</div>
+							<div class="repo-con">
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</main>
-
+		<script src="./assets/js/app.js"></script>
 		<script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 	</body>
 </html>
