@@ -9,7 +9,6 @@ window.onload = function(){
 	}
 	document.querySelector('.fa-bars').addEventListener('click',toggleNav)
 
-	// require('isomorphic-fetch');
 	const getData = async () =>{
 		let res = await fetch('https://api.github.com/graphql',{
 			method:'POST',
