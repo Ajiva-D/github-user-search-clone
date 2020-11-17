@@ -135,6 +135,16 @@ input{box-sizing:border-box}
 	padding-left: 0;
 	display: flex;
 }
+.title-img{
+	width:40px;
+	height: 40px;
+	border-radius: 50%;
+	object-fit: cover;
+	margin: 0 10px;
+}
+.title-name{
+	opacity:0;
+}
 .active-title{
 	border-bottom: 3px solid #f9826c;
 }
@@ -172,7 +182,7 @@ input{box-sizing:border-box}
 	border: 1px solid #e1e4e8;
 	position: absolute;
 	background-color: #fff;
-	left:70%;
+	left:75%;
 	top:75%;
 	z-index: 12;
 	box-shadow: 0 1px 0 rgba(27, 31, 35, 0.04);
@@ -353,6 +363,9 @@ input{box-sizing:border-box}
 	.title-nav ul{
 			overflow-x: scroll;
 	}
+	.title-img{
+		display: none;
+	}
 	.container input{
 		width:100%;
 		margin-right:0px;
@@ -442,7 +455,7 @@ input{box-sizing:border-box}
 	.emoji-con{
 		width:35px;
 		height: 35px;
-		left:70%;
+		left:75%;
 		top:70%;
 	}
 	.row{
