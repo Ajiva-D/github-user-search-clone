@@ -1,3 +1,4 @@
+exports.handler = function(event, context, callback) {
 window.onload = function(){
 	let showNav = true;
 	const toggleNav = ()=>{
@@ -120,4 +121,9 @@ window.onload = function(){
 	document.addEventListener('scroll',checkProfileImgScroll)
 
 	getData();
+	callback(null, {
+    statusCode: 200,
+    body: 'No worries, all is working fine!'
+  })
+}
 }
