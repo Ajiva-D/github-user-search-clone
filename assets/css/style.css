@@ -275,6 +275,9 @@ input{box-sizing:border-box}
 .pull-request-tab{
 	display: none;
 }
+.repo-info p{
+	font-size: 12px;
+}
 
 
 
