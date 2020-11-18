@@ -9,17 +9,16 @@ window.onload = function () {
 	};
 	document.querySelector(".bars").addEventListener("click", toggleNav);
 
-	// const getToken = async () =>{
-	// 	let res = await fetch('https://david-github-clone.netlify.app/.netlify/functions/githubclone',{
-	// 		method:'GET'
-	// 	})
-	// 	let data = await res.json()
-	// 	return data
-	// }
+	const getToken = async () =>{
+		let res = await fetch('https://david-github-clone.netlify.app/.netlify/functions/githubclone',{
+			method:'GET'
+		})
+		let data = await res.json()
+		return data
+	}
 
 	const getData = async () => {
-		// let GITHUB_TOKEN = await getToken();
-		let GITHUB_TOKEN = "d5a477a982de3892b9a57af99a11783121ddaf51";
+		let GITHUB_TOKEN = await getToken();
 		let res = await fetch("https://api.github.com/graphql", {
 			method: "POST",
 			headers: {
