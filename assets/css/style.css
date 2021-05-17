@@ -148,6 +148,10 @@ input{box-sizing:border-box}
 .active-title{
 	border-bottom: 3px solid #f9826c;
 }
+.active-title p{
+	font-weight: bold;
+	font-family: "SegoeBold";
+}
 .repos-total{
 	background-color: #d1d5da80;
 	padding:1px 10px;
