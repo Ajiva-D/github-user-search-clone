@@ -1,0 +1,22 @@
+{
+  "name": "github-clone",
+  "version": "1.0.0",
+  "description": "Github clone",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ajiva-D/github-clone.git"
+  },
+  "author": "David Aji",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ajiva-D/github-clone/issues"
+  },
+  "homepage": "https://github.com/Ajiva-D/github-clone#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}

@@ -9,53 +9,53 @@ window.onload = function () {
 	};
 	document.querySelector(".bars").addEventListener("click", toggleNav);
 
-	const getToken = async () =>{
-		let res = await fetch('https://david-github-clone.netlify.app/.netlify/functions/githubclone',{
-			method:'GET'
-		})
-		let data = await res.json()
-		return data
-	}
-
 	const getData = async () => {
-		let GITHUB_TOKEN = await getToken();
-		let res = await fetch("https://api.github.com/graphql", {
-			method: "POST",
-			headers: {
-				Authorization: `bearer ${GITHUB_TOKEN}`,
-			},
-			body: JSON.stringify({
-				query: `{
-					viewer {
-						login
-						repositories(first: 20, ownerAffiliations: OWNER) {
-							edges {
-								node {
-									id
-									url
-									updatedAt
-									primaryLanguage {
-										color
-										name
-									}
-									name
-									description
-									forkCount
-									isPrivate
-									stargazerCount
-								}
-							}
-						}
-						avatarUrl
-						bio
-						name
-					}
-				}`,
-			}),
+		let res = await fetch("https://david-github-clone.netlify.app/.netlify/functions/githubclone", {
+			method: "GET",
 		});
 		let data = await res.json();
 		injectData(data.data.viewer);
 	};
+
+	// const getData = async () => {
+	// 	let GITHUB_TOKEN = await getToken();
+	// 	let res = await fetch("https://api.github.com/graphql", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			Authorization: `bearer ${GITHUB_TOKEN}`,
+	// 		},
+	// 		body: JSON.stringify({
+	// 			query: `{
+	// 				viewer {
+	// 					login
+	// 					repositories(last: 20, ownerAffiliations: OWNER) {
+	// 						edges {
+	// 							node {
+	// 								id
+	// 								url
+	// 								updatedAt
+	// 								primaryLanguage {
+	// 									color
+	// 									name
+	// 								}
+	// 								name
+	// 								description
+	// 								forkCount
+	// 								isPrivate
+	// 								stargazerCount
+	// 							}
+	// 						}
+	// 					}
+	// 					avatarUrl
+	// 					bio
+	// 					name
+	// 				}
+	// 			}`,
+	// 		}),
+	// 	});
+	// 	let data = await res.json();
+	// 	injectData(data.data.viewer);
+	// };
 
 	const injectData = (data) => {
 		// add avatar images
@@ -97,9 +97,9 @@ window.onload = function () {
 			month[9] = "Oct";
 			month[10] = "Nov";
 			month[11] = "Dec";
-		let repoMonth = month[new Date(view.node.updatedAt).getMonth()];
-		let repoDay = new Date(view.node.updatedAt).getDay()
-		
+			let repoMonth = month[new Date(view.node.updatedAt).getMonth()];
+			let repoDay = new Date(view.node.updatedAt).getDay();
+
 			return `<div class="repos-list mt">
 		<div class="">
 			<a href="${view.node.url}">	<h3>${view.node.name}</h3></a>
