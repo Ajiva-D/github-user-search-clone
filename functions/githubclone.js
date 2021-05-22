@@ -8,8 +8,8 @@ exports.handler = async function(event, context, callback) {
 	console.log("running");
   // const name = event.queryStringParameters.name;
 	let name = "Vectormike"
-	let query = `query($name String){
-		user(login:"${$name}")  {
+	let query = `query{
+		user(login:"${name}")  {
 			login
 			repositories(last: 20) {
 				edges {
@@ -44,7 +44,6 @@ try {
 		},
 		body: JSON.stringify({
 			query,
-			variables:{name}
 		}),
 	});
 	let data = await res.json();
