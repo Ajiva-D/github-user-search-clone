@@ -84,7 +84,7 @@ window.onload = function () {
 	// 		method: "POST",
 	// 		headers: {
 	// 			'Content-Type': 'application/json',
-	// 			Authorization: `bearer 20ea021f1bc180a48c27089ecafe49e38d9db4b4`,
+	// 			Authorization: `bearer`,
 	// 		},
 	// 		body: JSON.stringify({
 	// 			query,
