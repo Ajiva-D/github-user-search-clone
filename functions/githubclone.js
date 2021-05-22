@@ -6,7 +6,34 @@ const headers = {
 };
 exports.handler = async function(event, context, callback) {
 	console.log("running");
-  const name = event.queryStringParameters.name;
+  // const name = event.queryStringParameters.name;
+	let name = "Vectormike"
+	let query = `query($name String){
+		user(login:"${$name}")  {
+			login
+			repositories(last: 20) {
+				edges {
+					node {
+						id
+						url
+						updatedAt
+						primaryLanguage {
+							color
+							name
+						}
+						name
+						description
+						forkCount
+						isPrivate
+						stargazerCount
+					}
+				}
+			}
+			avatarUrl
+			bio
+			name
+		}
+	}`;
 try {
 	let res = await fetch("https://api.github.com/graphql", {
 		method: "POST",
@@ -16,32 +43,8 @@ try {
 			Authorization: `bearer ${process.env.GITHUB_TOKEN}`,
 		},
 		body: JSON.stringify({
-			query: `{
-				user(login:${name})  {
-					login
-					repositories(last: 20, ownerAffiliations: OWNER) {
-						edges {
-							node {
-								id
-								url
-								updatedAt
-								primaryLanguage {
-									color
-									name
-								}
-								name
-								description
-								forkCount
-								isPrivate
-								stargazerCount
-							}
-						}
-					}
-					avatarUrl
-					bio
-					name
-				}
-			}`,
+			query,
+			variables:{name}
 		}),
 	});
 	let data = await res.json();

@@ -44,12 +44,56 @@ window.onload = function () {
   };
 
 	const getData = async () => {
-		let res = await fetch("https://david-github-clone.netlify.app/.netlify/functions/githubclone?name=Vectormike", {
+		let res = await fetch("https://david-search-github-clone.netlify.app/.netlify/functions/githubclone", {
 			method: "GET",
 		});
 		let data = await res.json();
-		injectData(data.data.viewer);
+		console.log(data);
+		// injectData(data.data.viewer);
 	};
+
+	// const getData = async () => {
+	// 	let name= "Vectormike"
+	// 	let query = `query{
+	// 		user(login:"${name}")  {
+	// 			login
+	// 			repositories(last: 20) {
+	// 				edges {
+	// 					node {
+	// 						id
+	// 						url
+	// 						updatedAt
+	// 						primaryLanguage {
+	// 							color
+	// 							name
+	// 						}
+	// 						name
+	// 						description
+	// 						forkCount
+	// 						isPrivate
+	// 						stargazerCount
+	// 					}
+	// 				}
+	// 			}
+	// 			avatarUrl
+	// 			bio
+	// 			name
+	// 		}
+	// 	}`
+	// 	let res = await fetch("https://api.github.com/graphql", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 			Authorization: `bearer 20ea021f1bc180a48c27089ecafe49e38d9db4b4`,
+	// 		},
+	// 		body: JSON.stringify({
+	// 			query,
+	// 		}),
+	// 	});
+	// 	let data = await res.json();
+	// 	console.log(data);
+	// 	// injectData(data.data.viewer);
+	// };
 
 	const injectData = (data) => {
 		// add avatar images
