@@ -6,6 +6,7 @@ const headers = {
 };
 exports.handler = async function(event, context, callback) {
 	console.log("running");
+  const name = event.queryStringParameters.name;
 try {
 	let res = await fetch("https://api.github.com/graphql", {
 		method: "POST",
@@ -16,7 +17,7 @@ try {
 		},
 		body: JSON.stringify({
 			query: `{
-				viewer {
+				user(login:${name})  {
 					login
 					repositories(last: 20, ownerAffiliations: OWNER) {
 						edges {
