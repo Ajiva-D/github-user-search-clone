@@ -44,7 +44,7 @@ window.onload = function () {
   };
 
 	const getData = async () => {
-		let res = await fetch("https://david-search-github-clone.netlify.app/.netlify/functions/githubclone", {
+		let res = await fetch("https://david-search-github-clone.netlify.app/.netlify/functions/githubclone?name=Vectormike", {
 			method: "GET",
 		});
 		let data = await res.json();
