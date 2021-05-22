@@ -18,5 +18,8 @@
   "homepage": "https://github.com/Ajiva-D/github-clone#readme",
   "dependencies": {
     "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "netlify-cli": "^3.30.3"
   }
 }

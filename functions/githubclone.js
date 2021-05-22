@@ -9,7 +9,7 @@ exports.handler = async function(event, context, callback) {
   // const name = event.queryStringParameters.name;
 	let name = "Vectormike"
 	let query = `query{
-		user(login:"${name}")  {
+		user(login:"Vectormike")  {
 			login
 			repositories(last: 20) {
 				edges {
