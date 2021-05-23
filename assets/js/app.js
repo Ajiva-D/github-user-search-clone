@@ -9,91 +9,86 @@ window.onload = function () {
 	};
 	document.querySelector(".bars").addEventListener("click", toggleNav);
 
-	  // show timestamp in readable format
-  // Epochs
-  const epochs = [
-    ['year', 31536000],
-    ['month', 2592000],
-    ['day', 86400],
-    ['hour', 3600],
-    ['minute', 60],
-    ['second', 1],
-  ];
+	// show timestamp in readable format
+	// Epochs
+	const epochs = [
+		["year", 31536000],
+		["month", 2592000],
+		["day", 86400],
+		["hour", 3600],
+		["minute", 60],
+		["second", 1],
+	];
 
-  // Get duration
-  const getDuration = (timeAgoInSeconds) => {
-    for (let [name, seconds] of epochs) {
-      const interval = Math.floor(timeAgoInSeconds / seconds);
+	// Get duration
+	const getDuration = (timeAgoInSeconds) => {
+		for (let [name, seconds] of epochs) {
+			const interval = Math.floor(timeAgoInSeconds / seconds);
 
-      if (interval >= 1) {
-        return {
-          interval: interval,
-          epoch: name,
-        };
-      }
-    }
-  };
+			if (interval >= 1) {
+				return {
+					interval: interval,
+					epoch: name,
+				};
+			}
+		}
+	};
 
-  // Calculate
-  const timeAgo = (date) => {
-    const timeAgoInSeconds = Math.floor((new Date() - new Date(date)) / 1000);
-    const { interval, epoch } = getDuration(timeAgoInSeconds);
-    const suffix = interval === 1 ? '' : 's';
+	// Calculate
+	const timeAgo = (date) => {
+		const timeAgoInSeconds = Math.floor((new Date() - new Date(date)) / 1000);
+		const { interval, epoch } = getDuration(timeAgoInSeconds);
+		const suffix = interval === 1 ? "" : "s";
 
-    return `${interval} ${epoch}${suffix} ago`;
-  };
+		return `${interval} ${epoch}${suffix} ago`;
+	};
 
-	const getData = async () => {
-		let res = await fetch("https://david-search-github-clone.netlify.app/.netlify/functions/githubclone?name=Vectormike", {
+	let input = document.querySelector("#search-input");
+	let mobileInput = document.querySelector("#search-input-mobile");
+
+	// Regular Input Search
+	input.addEventListener("keyup", (e) => {
+		if (e.keyCode === 13) {
+			let value = e.target.value;
+			getData(value, input);
+		}
+	});
+
+	// Mobile search
+	mobileInput.addEventListener("keyup", (e) => {
+		if (e.keyCode === 13) {
+			let value = e.target.value;
+			getData(value, mobileInput);
+		}
+	});
+
+	const getData = async (name, input) => {
+		let slash = document.querySelectorAll(".slash-box");
+		let donut = document.querySelectorAll(".donut");
+		if (input) {
+			input.setAttribute("disabled", true);
+			for (let i = 0; i < slash.length; i++) {
+				slash[i].classList.remove("d-flex");
+				slash[i].classList.add("d-hide");
+				donut[i].classList.add("d-flex");
+				donut[i].classList.remove("d-hide");
+			}
+		}
+		let res = await fetch(`https://david-search-github-clone.netlify.app/.netlify/functions/githubclone?name=${name}`, {
 			method: "GET",
 		});
 		let data = await res.json();
-		console.log(data);
-		// injectData(data.data.viewer);
+		if (input) {
+			input.removeAttribute("disabled");
+			for (let i = 0; i < slash.length; i++) {
+				donut[i].classList.remove("d-flex");
+				donut[i].classList.add("d-hide");
+				slash[i].classList.add("d-flex");
+				slash[i].classList.remove("d-hide");
+			}
+		}
+		injectData(data.data.user);
 	};
-
-	// const getData = async () => {
-	// 	let name= "Vectormike"
-	// 	let query = `query{
-	// 		user(login:"${name}")  {
-	// 			login
-	// 			repositories(last: 20) {
-	// 				edges {
-	// 					node {
-	// 						id
-	// 						url
-	// 						updatedAt
-	// 						primaryLanguage {
-	// 							color
-	// 							name
-	// 						}
-	// 						name
-	// 						description
-	// 						forkCount
-	// 						isPrivate
-	// 						stargazerCount
-	// 					}
-	// 				}
-	// 			}
-	// 			avatarUrl
-	// 			bio
-	// 			name
-	// 		}
-	// 	}`
-	// 	let res = await fetch("https://api.github.com/graphql", {
-	// 		method: "POST",
-	// 		headers: {
-	// 			'Content-Type': 'application/json',
-	// 			Authorization: `bearer`,
-	// 		},
-	// 		body: JSON.stringify({
-	// 			query,
-	// 		}),
-	// 	});
-	// 	let data = await res.json();
-	// 	console.log(data);
-	// 	// injectData(data.data.viewer);
-	// };
 
 	const injectData = (data) => {
 		// add avatar images
@@ -191,5 +186,5 @@ window.onload = function () {
 	};
 	document.addEventListener("scroll", checkProfileImgScroll);
 
-	getData();
+	getData("Ajiva-D");
 };

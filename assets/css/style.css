@@ -65,6 +65,9 @@ h1,h3,h5{
 	margin:0;
 }
 input{box-sizing:border-box} 
+input:disabled{
+	cursor:not-allowed;
+}
 .logo{
 	width:30px;
 }
@@ -283,12 +286,37 @@ input{box-sizing:border-box}
 	font-size: 12px;
 }
 
+.donut {
+  width: 1rem;
+  height: 1rem;
+  margin: 0rem;
+  border-radius: 50%;
+  border: 0.3rem solid rgba(151, 159, 208, 0.3);
+  border-top-color: #979fd0;
+  -webkit-animation: 1.5s spin infinite linear;
+          animation: 1.5s spin infinite linear;
+}
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 
 
 /* Helpers */
 .d-flex{
 	display:flex;
 	align-items: center;
+}
+.d-hide{
+	display: none;
 }
 .position-relative{
 	position: relative;
