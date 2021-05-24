@@ -41,6 +41,7 @@
 			}
 			.main {
 				display: none;
+				position: relative;
 			}
 			.error{
 				color:#f85149;
@@ -78,6 +79,9 @@
 							<input type="text" placeholder="Search any User by username..." id="search-input"/>
 							<div class="slash-box d-flex"><p>/</p></div>
 							<div class="donut d-hide"></div>
+						</div>
+						<div class="error error-card d-hide">
+							<p class="error" id="search-error">**User not found**</p>
 						</div>
 						<div class="d-flex d-none">
 							<a href="" class="pull-request">Pull requests</a>

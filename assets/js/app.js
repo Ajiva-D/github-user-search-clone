@@ -50,7 +50,7 @@ window.onload = function () {
 	input.addEventListener("keyup", (e) => {
 		if (e.keyCode === 13) {
 			let value = e.target.value;
-			getData(value, input);
+			searchUser(value, input);
 		}
 	});
 
@@ -58,13 +58,55 @@ window.onload = function () {
 	mobileInput.addEventListener("keyup", (e) => {
 		if (e.keyCode === 13) {
 			let value = e.target.value;
-			getData(value, mobileInput);
+			searchUser(value, mobileInput);
 		}
 	});
 
-	const getData = async (name, input) => {
+	// Initial page search
+	let searchBtn = document.querySelector(".search-button");
+	searchBtn.addEventListener("click", async () => {
+		let name = document.querySelector("#user-search").value;
+		searchBtn.innerText = "Searching";
+		searchBtn.setAttribute("disabled", true);
+		let elem = document.querySelector("#search-error");
+			let data = await getData(name);
+			if(data.data.user){
+				injectData(data.data.user);
+				name = "";
+						document.querySelector(".main").style.display = "block";
+			document.querySelector(".initial-search").style.display = "none";
+			}
+			else{
+				let error = data.errors
+			if(error[0].type == "NOT_FOUND"){
+				error = "**User not found**"
+				toggleError(elem,error,true)
+			} else{
+				error = error[0].message;
+				toggleError(elem,error,true)
+			}
+			}
+			searchBtn.innerText = "Search";
+			searchBtn.removeAttribute("disabled");
+	});
+
+	// display error
+	const toggleError = (elem,error,isError) =>{
+		if (isError) {
+			elem.classList.remove("d-hide");
+		elem.classList.add("d-show");
+		elem.innerText = error
+		}
+		else {
+			elem.classList.remove("d-show");
+			elem.classList.add("d-hide");
+		}
+	}
+
+	const searchUser = async (name, input) => {
 		let slash = document.querySelectorAll(".slash-box");
 		let donut = document.querySelectorAll(".donut");
+		let errorElem = document.querySelector(".error-card");
 		if (input) {
 			input.setAttribute("disabled", true);
 			for (let i = 0; i < slash.length; i++) {
@@ -74,10 +116,22 @@ window.onload = function () {
 				donut[i].classList.remove("d-hide");
 			}
 		}
-		let res = await fetch(`https://david-search-github-clone.netlify.app/.netlify/functions/githubclone?name=${name}`, {
-			method: "GET",
-		});
-		let data = await res.json();
+		let data = await getData(name);
+		if(data.data.user){
+			let error = ""
+			toggleError(errorElem,error,false)
+			injectData(data.data.user);
+		}
+		else{
+			let error = data.errors
+		if(error[0].type == "NOT_FOUND"){
+			error = "**User not found**"
+			toggleError(errorElem,error,true)
+		} else{
+			error = error[0].message;
+			toggleError(errorElem,error,true)
+		}
+		}
 		if (input) {
 			input.removeAttribute("disabled");
 			for (let i = 0; i < slash.length; i++) {
@@ -87,7 +141,14 @@ window.onload = function () {
 				slash[i].classList.remove("d-hide");
 			}
 		}
-		injectData(data.data.user);
+	};
+
+	const getData = async (name) => {
+		let res = await fetch(`https://david-search-github-clone.netlify.app/.netlify/functions/githubclone?name=${name}`, {
+			method: "GET",
+		});
+		let data = await res.json();
+		return data;
 	};
 
 	const injectData = (data) => {
@@ -166,8 +227,6 @@ window.onload = function () {
 			allrepos += reposView[i];
 		}
 		repoCon.innerHTML = allrepos;
-		document.querySelector(".main").style.display = "block";
-		document.querySelector(".loader").style.display = "none";
 	};
 
 	const isInViewport = () => {
@@ -186,5 +245,5 @@ window.onload = function () {
 	};
 	document.addEventListener("scroll", checkProfileImgScroll);
 
-	getData("Ajiva-D");
+	// getData("Ajiva-D");
 };
